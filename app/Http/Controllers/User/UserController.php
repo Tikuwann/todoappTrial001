@@ -38,6 +38,7 @@ class UserController extends Controller
         $time ->format('Y/m/d(d)');
         $tasks = Task::where('user_id', $userId)
         ->whereDate('task_date', '>=', $time)
+        ->orderBy('task_date','asc')
         ->get();
 
 
