@@ -31,14 +31,15 @@ Route::get('/', function () {
     return view('user.welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('user.dashboard');
-})->middleware(['auth', 'verified'])->name('user.dashboard');
+// Route::get('/dashboard', function () {
+//     return view('user.dashboard');
+// })->middleware(['auth', 'verified'])->name('user.dashboard');
 
 
 
 
 Route::middleware(['auth'])->controller(UserController::class)->name('user.')->group(function(){
+    Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/index', 'index')->name('index');
     Route::get('/create', 'create')->name('create');
     Route::post('/index', 'store')->name('store');

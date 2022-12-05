@@ -17,6 +17,8 @@ use Throwable;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\TaskUpdateRequest;
+use Carbon\Carbon;
+
 
 
 
@@ -29,13 +31,34 @@ class UserController extends Controller
 
 
     // }
+    public function dashboard()
+    {
+        $userId = Auth::id();
+        $time = new Carbon(Carbon::now());
+        $time ->format('Y/m/d(d)');
+        $tasks = Task::where('user_id', $userId)
+        ->whereDate('task_date', '>=', $time)
+        ->get();
+
+
+
+        return view('user.dashboard', compact('tasks'));
+
+    }
 
     public function index()
     {
         // $contacts = User::select('task_name','task_date', 'task_info')->get();
         $userId = Auth::id();
-        $tasks = Task::where('user_id', $userId)->get();
 
+
+
+
+
+
+        $tasks = Task::where('user_id', $userId)->latest('task_date')->get();
+        // $tasks = Task::where('DATEDIFF(task_date, CURRENT_DATE)')->get();
+        // $users = User::where('hogehoge',$hogeValue)->orderBy('created_at','desc')->get();
         return view('user.index', compact('tasks'));
     }
     /**
