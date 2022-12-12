@@ -50,6 +50,10 @@ Route::middleware(['auth'])->controller(UserController::class)->name('user.')->g
     Route::get('/show/{id}', 'show')->name('show');
     Route::post('/show/{id}', 'update')->name('update');
 
+    Route::get('/trash', 'trash')->name('trash');
+    Route::get('/trash/restore', 'restire')->name('restore');
+
+
 });
 
 

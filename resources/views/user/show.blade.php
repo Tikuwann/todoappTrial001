@@ -35,14 +35,15 @@
                           <div class="p-2 w-1/2">
                             <div class="relative">
                               <label for="task_name" class="leading-7 text-sm text-gray-600">予定タイトル</label>
-                              <input type="text" id="task_name" name="task_name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value= "{{ $task -> task_name}}">
+
+                              <input type="text" id="task_name" name="task_name" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value= "{{ $task -> task_name}}" disabled>
                             </div>
                           </div>
 
                           <div class="p-2 w-1/2">
                             <div class="relative">
                               <label for="task_date" class="leading-7 text-sm text-gray-600">予定日時</label>
-                              <input type="date" id="task_date" name="task_date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value= "{{ $task -> task_date}}">
+                              <input type="date" id="task_date" name="task_date" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" value= "{{ $task -> task_date}}" disabled>
                             </div>
                           </div>
 
@@ -51,7 +52,7 @@
                           <div class="p-2 w-full">
                             <div class="relative">
                               <label for="task_info" class="leading-7 text-sm text-gray-600">予定詳細</label>
-                              <textarea name="task_info" id="task_info" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ $task -> task_info}}</textarea>
+                              <textarea name="task_info" id="task_info" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out" disabled>{{ $task -> task_info}}</textarea>
                             </div>
                           </div>
                           <div class="p-2 w-full">
