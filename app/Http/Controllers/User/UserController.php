@@ -51,16 +51,26 @@ class UserController extends Controller
     {
         // $contacts = User::select('task_name','task_date', 'task_info')->get();
         $userId = Auth::id();
+        $time = new Carbon(Carbon::now());
+        $time ->format('Y/m/d(d)');
+        $uptasks = Task::where('user_id', $userId)
+        ->whereDate('task_date', '>=', $time)
+        ->orderBy('task_date','asc')
+        ->get();
+        $endtasks = Task::where('user_id', $userId)
+        ->whereDate('task_date', '<', $time)
+        ->orderBy('task_date','asc')
+        ->get();
 
 
 
 
 
 
-        $tasks = Task::where('user_id', $userId)->latest('task_date')->get();
+        // $tasks = Task::where('user_id', $userId)->latest('task_date')->get();
         // $tasks = Task::where('DATEDIFF(task_date, CURRENT_DATE)')->get();
         // $users = User::where('hogehoge',$hogeValue)->orderBy('created_at','desc')->get();
-        return view('user.index', compact('tasks'));
+        return view('user.index', compact( 'uptasks', 'endtasks'));
     }
     /**
      * Display the user's profile form.
@@ -151,10 +161,17 @@ class UserController extends Controller
     public function edit($id)
     {
         $userId = Auth::id();
-        $tasks = Task::where('user_id', $userId)->get();
-        // $user = Task::findOrFail($id);
-        dd($tasks);
-        return view ('user.edit',compact('tasks'));
+        // $tasks = Task::where('user_id', $userId)->get();
+        // // $user = Task::findOrFail($id);
+        // dd($tasks);
+
+        $userId = Auth::id();
+        // $task_id = Task::where('id', $id)->first('id');
+        $tasks = Task::where('id', $id)->where('user_id',$userId) ->get();
+
+        // dd($task);
+        return view('user.edit', compact('tasks'));
+        // return Redirect::route('user.index')->with('status', 'updated');
     }
 
  // /** ProfileUpdate
@@ -212,22 +229,28 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request ,$id)
     {
-        $request->validateWithBag('userDeletion', [
-            'password' => ['required', 'current-password'],
-        ]);
 
-        $user = $request->user();
+        $task = Task::find($id);
 
-        Auth::logout();
+        $task ->delete();
 
-        $user->delete();
 
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
+        // $request->validateWithBag('userDeletion', [
+        //     'password' => ['required', 'current-password'],
+        // ]);
 
-        return Redirect::to('/');
+        // $user = $request->user();
+
+        // Auth::logout();
+
+        // $user->delete();
+
+        // $request->session()->invalidate();
+        // $request->session()->regenerateToken();
+
+        return to_route('user.index');
     }
 
     /**

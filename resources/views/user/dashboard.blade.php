@@ -15,32 +15,45 @@
         </div>
     </div>
 
+    @foreach ( $tasks as $task)
 
 
-    <div class="flex justify-center bg-white overflow-hidden shadow-sm sm:rounded-lg">
 
 
-
-         <div class="flex flex-wrap ">
-            @foreach ( $tasks as $task)
-
-            <div class="p-4 xl:w-1/12 md:w-1/3 w-full">
-
-
-              <div class="min-h-900 h-full p-6 rounded-lg border-2 border-gray-300 flex flex-col relative overflow-hidden">
-
-                <h2 class="text-sm tracking-widest title-font mb-1 font-medium">{{ $task-> task_date }} </h2>
-                <h1 class="text-5xl text-gray-900 pb-4 mb-4 border-b border-gray-200 leading-none">{{ $task-> task_name }} </h1>
-                <p class="flex items-center text-gray-600 mb-2">
-
-                    {{ $task-> task_info }}
-                </p>
-
-                <a href="{{route('user.show',['id'=>$task->id])}}" role="button" class="flex items-center mt-auto text-white bg-gray-400 border-0 py-2 px-4 w-full focus:outline-none hover:bg-gray-500 rounded">View more information</a>
-
+    <section class=" text-gray-600 body-font overflow-hidden">
+        <div class="container  px-5 py-12 mx-auto">
+          <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg -my-8 divide-y-4 divide-gray-500">
+            <div class="py-8 flex flex-wrap md:flex-nowrap">
+              <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
+                <span class="font-semibold title-font text-gray-700">{{ $task-> task_date }}</span>
+                {{-- <span class="mt-1 text-gray-500 text-sm">12 Jun 2019</span> --}}
               </div>
+            <div class="md:flex-grow">
+                <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{ $task-> task_name }}</h2>
+                <p class="leading-relaxed">{{ $task-> task_info }}</p>
+                <a href="{{route('user.edit',['id'=>$task->id])}}" role="button" class="text-indigo-500 inline-flex items-center mt-4">Learn More
+                  <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                  </svg>
+                </a>
+
             </div>
-         @endforeach
+
+
+            </div>
+
+          </div>
+        </div>
+    </section>
+      @endforeach
+
+
+
+
+
+
+
 
          </div>
 </div>
@@ -49,7 +62,6 @@
          <script src="https://use.fontawesome.com/03f8a0ebd4.js"></script>
          <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
          <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
 
 
 

@@ -41,9 +41,12 @@ Route::get('/', function () {
 Route::middleware(['auth'])->controller(UserController::class)->name('user.')->group(function(){
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/index', 'index')->name('index');
-    Route::get('/create', 'create')->name('create');
     Route::post('/index', 'store')->name('store');
-    Route::get('/{id}/edit', 'edit')->name('edit');
+    Route::get('/create', 'create')->name('create');
+
+    Route::get('/edit/{id}', 'edit')->name('edit');
+    Route::post('/edit/{id}', 'destroy')->name('destroy');
+
     Route::get('/show/{id}', 'show')->name('show');
     Route::post('/show/{id}', 'update')->name('update');
 
