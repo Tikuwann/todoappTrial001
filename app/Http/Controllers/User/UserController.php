@@ -160,10 +160,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        $userId = Auth::id();
-        // $tasks = Task::where('user_id', $userId)->get();
-        // // $user = Task::findOrFail($id);
-        // dd($tasks);
+
 
         $userId = Auth::id();
         // $task_id = Task::where('id', $id)->first('id');
@@ -232,9 +229,9 @@ class UserController extends Controller
     public function destroy(Request $request ,$id)
     {
 
-        $task = Task::find($id);
+        $task = Task::where('id', $id)->delete();
 
-        $task ->delete();
+        // $task ->delete();
 
 
         // $request->validateWithBag('userDeletion', [

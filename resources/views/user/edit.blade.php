@@ -57,12 +57,17 @@
                           <div class="p-2 w-full">
                             <button onclick="location.href='{{route('user.update', ['id' => $task -> id])}}" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">保存</button>
                           </div>
+                        </form>
+
+
+                          <div class="p-2 w-full">
                           <form method="post" action="{{ route('user.destroy' , ['id' => $task ->id])}}">
                             @csrf
                         <div class="p-2 w-full">
                             <button onclick="location.href='{{route('user.destroy', ['id' => $task -> id])}}" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">delete</button>
-                        </div>
-                    </form>
+                          </div>
+                          </div>
+                        </form>
 
 
 
