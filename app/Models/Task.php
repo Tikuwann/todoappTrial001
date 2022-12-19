@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Kyslik\ColumnSortable\Sortable; // 追加
+
 
 class Task extends Model
 {
     use  HasFactory;
-
+    use Sortable;
 
 
     /**
@@ -25,7 +27,6 @@ class Task extends Model
 
     protected $fillable = [
         'user_id',
-
         'task_name',
         'task_date',
         'task_info',

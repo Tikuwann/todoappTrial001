@@ -30,7 +30,9 @@
               </div>
             <div class="md:flex-grow">
                 <h2 class="text-2xl font-medium text-gray-900 title-font mb-2">{{ $task-> task_name }}</h2>
-                <p class="leading-relaxed">{{ $task-> task_info }}</p>
+
+
+                <p class="leading-relaxed">{{ Str::limit( $task-> task_info , 40, '...') }}</p>
                 <a href="{{route('user.edit',['id'=>$task->id])}}" role="button" class="text-indigo-500 inline-flex items-center mt-4">Learn More
                   <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round">
                     <path d="M5 12h14"></path>

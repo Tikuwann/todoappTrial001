@@ -49,21 +49,36 @@ class UserController extends Controller
 
     public function index()
     {
-        // $contacts = User::select('task_name','task_date', 'task_info')->get();
+        // // $contacts = User::select('task_name','task_date', 'task_info')->get();
+        // $userId = Auth::id();
+        // $time = new Carbon(Carbon::now());
+        // $time ->format('Y/m/d(d)');
+        // $uptasks = Task::sortable()
+        // ->where('user_id', $userId)
+        // ->where('complete','0')
+        // // ->whereDate('task_date', '>=', $time)
+        // ->orderBy('task_date','asc')
+        // ->get();
+        // $endtasks = Task::sortable()
+        // ->where('user_id', $userId)
+        // ->where('complete','1')
+        // // ->whereDate('task_date', '<', $time)
+        // ->orderBy('task_date','asc')
+        // ->get();
+
+
+
         $userId = Auth::id();
-        $time = new Carbon(Carbon::now());
-        $time ->format('Y/m/d(d)');
-        $uptasks = Task::where('user_id', $userId)
-        ->whereDate('task_date', '>=', $time)
+        $uptasks = Task::sortable()
+        ->where('user_id', $userId)
+        ->where('complete','0')
         ->orderBy('task_date','asc')
         ->get();
-        $endtasks = Task::where('user_id', $userId)
-        ->whereDate('task_date', '<', $time)
+        $endtasks = Task::sortable()
+        ->where('user_id', $userId)
+        ->where('complete','1')
         ->orderBy('task_date','asc')
         ->get();
-
-
-
 
 
 
@@ -72,6 +87,12 @@ class UserController extends Controller
         // $users = User::where('hogehoge',$hogeValue)->orderBy('created_at','desc')->get();
         return view('user.index', compact( 'uptasks', 'endtasks'));
     }
+
+
+
+
+
+
     /**
      * Display the user's profile form.
      *
