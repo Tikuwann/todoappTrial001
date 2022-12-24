@@ -44,6 +44,7 @@ Route::middleware(['auth'])->controller(UserController::class)->name('user.')->g
     Route::post('/index', 'store')->name('store');
     Route::get('/create', 'create')->name('create');
 
+
     Route::get('/edit/{id}', 'edit')->name('edit');
     Route::post('/edit/{id}', 'destroy')->name('destroy');
 
@@ -57,7 +58,9 @@ Route::middleware(['auth'])->controller(UserController::class)->name('user.')->g
 });
 
 
-
+Route::get('/{any?}', function () {
+    return view('welcome');
+})->where('any', '^(?!api\/)[\/\w\.-]*');
 
 
 Route::middleware('auth')->group(function () {

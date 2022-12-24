@@ -212,7 +212,10 @@ class UserController extends Controller
         $task-> task_info = $request->task_info;
         $task->save();
 
-
+        return Inertia::render(
+            'User/Index',
+            ['users' => User::all()]
+        );
 
         return to_route('user.index');
      }
